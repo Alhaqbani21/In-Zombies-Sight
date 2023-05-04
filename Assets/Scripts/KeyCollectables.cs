@@ -17,7 +17,7 @@ public class KeyCollectables : MonoBehaviour
 
 
     // Private variable to keep track of how many keys the player has collected
-    private int keysCollected = 0;
+    private static int keysCollected = 0;
 
     // This function is called when the player object collides with the key object
     private void OnTriggerStay(Collider other)
@@ -46,6 +46,8 @@ public class KeyCollectables : MonoBehaviour
                 {
                     // Display a debug log message
                     Debug.Log("Player has collected all 3 keys!");
+                    FindObjectOfType<WinHandler>().HandleWin();
+                    keysCollected = 0;
                 }
 
                  
