@@ -97,7 +97,7 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.SetDestination(target.position);
 
        
-        if(gameObject.activeSelf && !soundSource.isPlaying){
+        if(gameObject.activeSelf && !soundSource.isPlaying && playerDead){
             soundActive= true;
         startSoundChase();
         }

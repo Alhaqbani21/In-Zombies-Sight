@@ -27,8 +27,10 @@ public class KeyCollectables : MonoBehaviour
             // Check if the colliding object is the player object
             if (other.gameObject.tag == "Player")
             {
+
+                collectSound();
                 // Disable the key object
-                gameObject.SetActive(false);
+               // gameObject.SetActive(false);
 
                 // Increment the number of keys collected
                 keysCollected++;
@@ -37,7 +39,6 @@ public class KeyCollectables : MonoBehaviour
                 // Show the collected key on the canvas
                 KeyNotFound.gameObject.SetActive(false);
                 Key.gameObject.SetActive(true);
-                collectSound();
 
 
                 // Check if the player has collected all 3 keys
@@ -46,20 +47,25 @@ public class KeyCollectables : MonoBehaviour
                     // Display a debug log message
                     Debug.Log("Player has collected all 3 keys!");
                 }
+
+                 
+
             }
         }
        
     }
 
      private void OnTriggerExit(Collider other) {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+        
                 if(other.gameObject.tag == "Player"){
-                    Destroy(gameObject);
-                }}
+                   
+                Destroy(gameObject);
+
+                }
     }
 
     void collectSound(){
+        Debug.Log("KEY");
         soundSource.Play();
     }
 

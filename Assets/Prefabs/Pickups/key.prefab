@@ -127,7 +127,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.33
+  m_Radius: 0.97
   m_Center: {x: 0.000030517578, y: -0.000053406693, z: 0.00006103888}
 --- !u!82 &-3185776132347598246
 AudioSource:
@@ -141,7 +141,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.729
+  m_Volume: 0.942
   m_Pitch: 1
   Loop: 0
   Mute: 0
