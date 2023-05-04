@@ -5,9 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+
+    bool playerAlive;
+
     // Start is called before the first frame update
     public void ReladGame()
     {
+
+        // Set player to alive again, after reloading the scene
+        // playerAlive = player.GetComponent<PlayerHealth>().playerIsDead;
+
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }

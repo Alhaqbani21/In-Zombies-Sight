@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
     EnemyHealth health;
     Transform target;
     public GameObject player;
-    bool playerHealth;
+    bool playerDead;
 
 
     // Start is called before the first frame update
@@ -35,7 +35,6 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<EnemyHealth>();
         target = FindObjectOfType<PlayerHealth>().transform;
-       playerHealth = player.GetComponent<PlayerHealth>().playerIsDead;
         soundSource= GetComponent<AudioSource>();
 
     }
@@ -52,13 +51,14 @@ public class EnemyAI : MonoBehaviour
             soundActive= false;
         }
 
-        //if(playerHealth){
-          //  soundSource.Stop();
-        //}
+        // Stop sound after killing the player      
+        if(playerDead){
+            soundSource.Stop();
+        }
 
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
-        if (isProvoked)
+        if (isProvoked && !playerDead)
         {
             EngageTarget();
         }
@@ -108,10 +108,12 @@ public class EnemyAI : MonoBehaviour
     private void AttackTarget()
     {
         GetComponent<Animator>().SetBool("attack", true);
+        playerDead = player.GetComponent<PlayerHealth>().playerIsDead;
 
-        Debug.Log(playerHealth);
+        Debug.Log(playerDead);
+        
 
-        if(gameObject.activeSelf && !soundSource.isPlaying){
+        if(gameObject.activeSelf && !soundSource.isPlaying && playerDead){
             soundActive= true;
             startSoundAttack();
         }

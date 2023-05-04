@@ -159,6 +159,7 @@ MonoBehaviour:
   zombieAttackSounds:
   - {fileID: 8300000, guid: 24b617db03a924c4ab49c13feb18c10d, type: 3}
   - {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
+  - {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
   player: {fileID: 0}
 --- !u!114 &1558491228
 MonoBehaviour:
