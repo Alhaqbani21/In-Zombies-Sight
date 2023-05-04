@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5457416515987986553}
   - component: {fileID: 1558491228}
   - component: {fileID: 1558491235}
-  - component: {fileID: 166227223491938628}
+  - component: {fileID: 6461374489573318694}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -153,7 +153,10 @@ MonoBehaviour:
   chaseRange: 10
   turnSpeed: 5
   zombieSounds:
-  - {fileID: 8300000, guid: 9f8a1e6741a342647b9c0055e1e0a7b8, type: 3}
+  - {fileID: 8300000, guid: 8b9826c915109c446be0c38d54721a2d, type: 3}
+  - {fileID: 8300000, guid: 0547b940dba4d964e9e447af1dc0759a, type: 3}
+  - {fileID: 8300000, guid: 90054576c036ea44096d20cc89ff4da2, type: 3}
+  zombieAttackSound: {fileID: 8300000, guid: bd67058a6079faf40b2dbfb35ea160b1, type: 3}
 --- !u!114 &1558491228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
---- !u!82 &166227223491938628
+--- !u!82 &6461374489573318694
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,15 +193,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 0.32
-  Loop: 0
+  m_audioClip: {fileID: 8300000, guid: 1225b0f997026d64fa600c3fd93f1a74, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.078
+  m_Pitch: 0.31
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 53
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

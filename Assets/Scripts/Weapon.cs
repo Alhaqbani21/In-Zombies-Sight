@@ -68,6 +68,7 @@ public class Weapon : MonoBehaviour
     {
         muzzleFlash.Play();
         shootingSound.Play();
+        // Debug.Log("Fire");
 
     }
 
