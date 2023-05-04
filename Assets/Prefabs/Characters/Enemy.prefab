@@ -153,10 +153,13 @@ MonoBehaviour:
   chaseRange: 10
   turnSpeed: 5
   zombieSounds:
-  - {fileID: 8300000, guid: c35b1f489447c164f99deded2c2a9a6a, type: 3}
   - {fileID: 8300000, guid: e66b136e063cc4049b96679b13228187, type: 3}
-  - {fileID: 8300000, guid: 1225b0f997026d64fa600c3fd93f1a74, type: 3}
-  zombieAttackSound: {fileID: 8300000, guid: bd67058a6079faf40b2dbfb35ea160b1, type: 3}
+  - {fileID: 8300000, guid: e29d35a3561cf964e9c39f5b99c2696c, type: 3}
+  - {fileID: 8300000, guid: c35b1f489447c164f99deded2c2a9a6a, type: 3}
+  zombieAttackSounds:
+  - {fileID: 8300000, guid: 24b617db03a924c4ab49c13feb18c10d, type: 3}
+  - {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
+  player: {fileID: 0}
 --- !u!114 &1558491228
 MonoBehaviour:
   m_ObjectHideFlags: 0

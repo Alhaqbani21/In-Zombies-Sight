@@ -9,9 +9,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float hitPoints = 100f;
     [SerializeField] TextMeshProUGUI healthText; 
 
+    public bool playerIsDead= false;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerIsDead= false;
         UpdateHealthText();
     }
 
@@ -19,9 +22,10 @@ public class PlayerHealth : MonoBehaviour
     {
         hitPoints -= damage;
         UpdateHealthText(); // Update the health text after taking damage
-
+        
         if (hitPoints <= 0)
         {
+            playerIsDead= true;
             GetComponent<DeathHandler>().HandleDeath();
         }
     }

@@ -13,8 +13,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float turnSpeed = 5f;
 
     public AudioClip[] zombieSounds;
+    public AudioClip[] zombieAttackSounds;
     private AudioSource soundSource;
-    public AudioClip zombieAttackSound;
     int n=0;
     private bool soundActive; 
     
@@ -25,6 +25,8 @@ public class EnemyAI : MonoBehaviour
     bool isProvoked = false;
     EnemyHealth health;
     Transform target;
+    public GameObject player;
+    bool playerHealth;
 
 
     // Start is called before the first frame update
@@ -33,42 +35,12 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<EnemyHealth>();
         target = FindObjectOfType<PlayerHealth>().transform;
+       playerHealth = player.GetComponent<PlayerHealth>().playerIsDead;
         soundSource= GetComponent<AudioSource>();
 
     }
 
-    void startSoundChaseZ(){
-        n= UnityEngine.Random.Range(1, zombieSounds.Length);
-        soundSource.clip= zombieSounds[n];
-        // soundSource.Play();
-        soundSource.PlayOneShot(soundSource.clip);
-        Debug.Log("CHASING");
 
-        zombieSounds[n]= zombieSounds[0];
-        zombieSounds[0]= soundSource.clip;
-            }
-
-   void startSoundChase(){
-        n= UnityEngine.Random.Range(1, zombieSounds.Length);
-        soundSource.clip= zombieSounds[n];
-        soundSource.Play();
-        Debug.Log("CHASING");
-
-            // to avoid repeating the sound
-          zombieSounds[n]= zombieSounds[0];
-         zombieSounds[0]= soundSource.clip;
-
-    }
-
-    void startSoundAttack(){
-        // n= UnityEngine.Random.Range(1, zombieSounds.Length);
-        soundSource.clip= zombieAttackSound;
-        soundSource.Play();
-        Debug.Log("ATTACKING");
-
-        // zombieSounds[n]= zombieSounds[0];
-        // zombieSounds[0]= soundSource.clip;
-    }
 
     // Update is called once per frame
     void Update()
@@ -79,6 +51,10 @@ public class EnemyAI : MonoBehaviour
             navMeshAgent.enabled = false;
             soundActive= false;
         }
+
+        //if(playerHealth){
+          //  soundSource.Stop();
+        //}
 
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
@@ -133,9 +109,11 @@ public class EnemyAI : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("attack", true);
 
+        Debug.Log(playerHealth);
 
- if(gameObject.activeSelf){
-        startSoundAttack();
+        if(gameObject.activeSelf && !soundSource.isPlaying){
+            soundActive= true;
+            startSoundAttack();
         }
 
     }
@@ -146,6 +124,30 @@ public class EnemyAI : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation , lookRotation,Time.deltaTime * turnSpeed);
 
+    }
+
+    
+   void startSoundChase(){
+        n= UnityEngine.Random.Range(1, zombieSounds.Length);
+        soundSource.clip= zombieSounds[n];
+        soundSource.Play();
+        Debug.Log("CHASING");
+
+            // to avoid repeating the sound
+          zombieSounds[n]= zombieSounds[0];
+         zombieSounds[0]= soundSource.clip;
+
+    }
+
+    void startSoundAttack(){
+        n= UnityEngine.Random.Range(1, zombieAttackSounds.Length);
+        soundSource.clip= zombieAttackSounds[n];
+        soundSource.Play();
+        Debug.Log("ATTACKING");
+
+        // to avoid repeating the sound
+          zombieAttackSounds[n]= zombieAttackSounds[0];
+         zombieAttackSounds[0]= soundSource.clip;
     }
 
 
