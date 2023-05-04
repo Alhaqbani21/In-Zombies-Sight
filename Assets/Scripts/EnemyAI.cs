@@ -11,6 +11,10 @@ public class EnemyAI : MonoBehaviour
     
     [SerializeField] float chaseRange = 5f;
     [SerializeField] float turnSpeed = 5f;
+
+    public AudioClip[] zombieSounds;
+    private AudioSource soundSource;
+    int n=0;
     
 
 
@@ -27,8 +31,18 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<EnemyHealth>();
         target = FindObjectOfType<PlayerHealth>().transform;
+        soundSource= GetComponent<AudioSource>();
 
     }
+
+    void startSound(){
+        n= UnityEngine.Random.Range(1, zombieSounds.Length);
+        soundSource.clip= zombieSounds[n];
+        soundSource.PlayOneShot(soundSource.clip);
+
+        zombieSounds[n]= zombieSounds[0];
+        zombieSounds[0]= soundSource.clip;
+            }
 
     // Update is called once per frame
     void Update()
@@ -77,6 +91,8 @@ public class EnemyAI : MonoBehaviour
         GetComponent<Animator>().SetBool("attack", false);
         GetComponent<Animator>().SetTrigger("move");
         navMeshAgent.SetDestination(target.position);
+        startSound();
+
 
     }
 
