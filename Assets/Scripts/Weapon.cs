@@ -18,8 +18,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] AmmoType ammoType;
     [SerializeField] float timeBetweenShots = 0.5f;
     [SerializeField] TextMeshProUGUI ammoText;
+     AudioSource shootingSound;
 
     bool canShoot = true;
+
+
+    private void Start() {
+        shootingSound= GetComponent<AudioSource>();
+    }
 
 
     private void OnEnable()
@@ -61,6 +67,8 @@ public class Weapon : MonoBehaviour
     private void PlayMuzzleFlash()
     {
         muzzleFlash.Play();
+        shootingSound.Play();
+
     }
 
     private void ProcessRaycast()
