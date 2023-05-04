@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour
     private AudioSource soundSource;
     public AudioClip zombieAttackSound;
     int n=0;
+    private bool soundActive; 
     
 
 
@@ -48,7 +49,15 @@ public class EnemyAI : MonoBehaviour
             }
 
    void startSoundChase(){
-       soundSource.Play();
+        n= UnityEngine.Random.Range(1, zombieSounds.Length);
+        soundSource.clip= zombieSounds[n];
+        soundSource.Play();
+        Debug.Log("CHASING");
+
+            // to avoid repeating the sound
+          zombieSounds[n]= zombieSounds[0];
+         zombieSounds[0]= soundSource.clip;
+
     }
 
     void startSoundAttack(){
@@ -68,6 +77,7 @@ public class EnemyAI : MonoBehaviour
         {
             enabled = false;
             navMeshAgent.enabled = false;
+            soundActive= false;
         }
 
         distanceToTarget = Vector3.Distance(target.position, transform.position);
@@ -111,7 +121,8 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.SetDestination(target.position);
 
        
-        if(gameObject.activeSelf){
+        if(gameObject.activeSelf && !soundSource.isPlaying){
+            soundActive= true;
         startSoundChase();
         }
 
