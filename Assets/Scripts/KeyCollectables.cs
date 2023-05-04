@@ -12,6 +12,8 @@ public class KeyCollectables : MonoBehaviour
     // Public variable to hold references to the key images on the canvas
     [SerializeField] RawImage Key;
     [SerializeField] Image KeyNotFound;
+    private AudioSource soundSource;
+
 
 
     // Private variable to keep track of how many keys the player has collected
@@ -35,7 +37,7 @@ public class KeyCollectables : MonoBehaviour
                 // Show the collected key on the canvas
                 KeyNotFound.gameObject.SetActive(false);
                 Key.gameObject.SetActive(true);
-                Destroy(gameObject);
+                collectSound();
 
 
                 // Check if the player has collected all 3 keys
@@ -49,11 +51,27 @@ public class KeyCollectables : MonoBehaviour
        
     }
 
+     private void OnTriggerExit(Collider other) {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+                if(other.gameObject.tag == "Player"){
+                    Destroy(gameObject);
+                }}
+    }
+
+    void collectSound(){
+        soundSource.Play();
+    }
+
     private void Start()
     {
         Key.gameObject.SetActive(false);
         KeyNotFound.gameObject.SetActive(true);
+        soundSource= GetComponent<AudioSource>();
+
     }
+
+     
 
     // This function is called every frame
     private void Update()
