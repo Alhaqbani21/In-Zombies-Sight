@@ -97,7 +97,7 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.SetDestination(target.position);
 
        
-        if(gameObject.activeSelf && !soundSource.isPlaying && playerDead){
+        if(gameObject.activeSelf && !soundSource.isPlaying && !playerDead){
             soundActive= true;
         startSoundChase();
         }
@@ -113,7 +113,7 @@ public class EnemyAI : MonoBehaviour
         Debug.Log(playerDead);
         
 
-        if(gameObject.activeSelf && !soundSource.isPlaying && playerDead){
+        if(gameObject.activeSelf && !soundSource.isPlaying && !playerDead){
             soundActive= true;
             startSoundAttack();
         }
