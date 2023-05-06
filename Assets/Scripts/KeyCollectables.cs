@@ -13,7 +13,7 @@ public class KeyCollectables : MonoBehaviour
     [SerializeField] RawImage Key;
     [SerializeField] Image KeyNotFound;
     private AudioSource soundSource;
-
+    bool KeyPressed = false;
 
 
     // Private variable to keep track of how many keys the player has collected
@@ -34,6 +34,7 @@ public class KeyCollectables : MonoBehaviour
 
                 // Increment the number of keys collected
                 keysCollected++;
+                KeyPressed = true;
 
 
                 // Show the collected key on the canvas
@@ -60,8 +61,11 @@ public class KeyCollectables : MonoBehaviour
      private void OnTriggerExit(Collider other) {
         
                 if(other.gameObject.tag == "Player"){
+                    if(KeyPressed){
+                        Destroy(gameObject);
+                    }
                    
-                Destroy(gameObject);
+                
 
                 }
     }
