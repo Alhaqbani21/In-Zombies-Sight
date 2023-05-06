@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class KeyCollectables : MonoBehaviour
 {
@@ -15,13 +16,26 @@ public class KeyCollectables : MonoBehaviour
     private AudioSource soundSource;
     bool KeyPressed = false;
 
+    [SerializeField] TMP_Text Key_text;
 
     // Private variable to keep track of how many keys the player has collected
     private static int keysCollected = 0;
 
+
+    private void OnTriggerEnter(Collider other) {
+
+             if (other.gameObject.tag == "Player")
+            {
+                Key_text.enabled = true;
+            }
+    }
+
+
     // This function is called when the player object collides with the key object
     private void OnTriggerStay(Collider other)
     {
+
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Check if the colliding object is the player object
@@ -61,6 +75,9 @@ public class KeyCollectables : MonoBehaviour
      private void OnTriggerExit(Collider other) {
         
                 if(other.gameObject.tag == "Player"){
+
+                    Key_text.enabled = false;
+
                     if(KeyPressed){
                         Destroy(gameObject);
                     }
@@ -80,6 +97,8 @@ public class KeyCollectables : MonoBehaviour
         Key.gameObject.SetActive(false);
         KeyNotFound.gameObject.SetActive(true);
         soundSource= GetComponent<AudioSource>();
+        Key_text.enabled = false;
+
 
     }
 
