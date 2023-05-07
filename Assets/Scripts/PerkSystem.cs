@@ -12,6 +12,7 @@ public class PerkSystem : MonoBehaviour
     [SerializeField] TMP_Text User_text;
     [SerializeField] TMP_Text NoMoney;
     [SerializeField] Image perkImage;
+    [SerializeField] private float movementSpeed;
 
 
     [SerializeField] float Cost;
@@ -26,6 +27,8 @@ public class PerkSystem : MonoBehaviour
     {
         target = FindObjectOfType<PlayerHealth>();
         Mytarget = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>();
+        movementSpeed = Mytarget.movementSettings.ForwardSpeed;
+        Debug.Log(movementSpeed);
         User_text.enabled = false;
         NoMoney.enabled = false;
         bought = false;
