@@ -17,7 +17,8 @@ public class EnemyAI : MonoBehaviour
     private AudioSource soundSource;
     int n=0;
     private bool soundActive; 
-    
+
+
 
 
     NavMeshAgent navMeshAgent;
@@ -49,11 +50,14 @@ public class EnemyAI : MonoBehaviour
             enabled = false;
             navMeshAgent.enabled = false;
             soundActive= false;
+
+
         }
 
         // Stop sound after killing the player      
         if(playerDead){
             soundSource.Stop();
+
         }
 
         distanceToTarget = Vector3.Distance(target.position, transform.position);
@@ -67,6 +71,8 @@ public class EnemyAI : MonoBehaviour
             isProvoked=true;
 
         }
+
+
     }
 
     public void OnDamageTaken()

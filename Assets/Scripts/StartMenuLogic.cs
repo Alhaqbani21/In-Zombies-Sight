@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuLogic : MonoBehaviour
 {
-    public void StartGame()
+    public void PlayGame()
     {
-        SceneManager.LoadScene("Zombie Game");
+        //SceneManager.LoadScene("Zombie Game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void OptionButton()
     {
         Debug.Log("Options...");
+
     }
     public void QuitGame()
     {
