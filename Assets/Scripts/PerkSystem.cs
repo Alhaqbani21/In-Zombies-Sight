@@ -98,7 +98,9 @@ public class PerkSystem : MonoBehaviour
         }
         else if(this.gameObject.tag == "Stamina")
         {
-            //Mytarget.increseSpeed();
+            Mytarget.movementSettings.ForwardSpeed += 2f;
+            Mytarget.movementSettings.BackwardSpeed+= 2f;
+            Mytarget.movementSettings.StrafeSpeed += 2f;
         }
     }
 
