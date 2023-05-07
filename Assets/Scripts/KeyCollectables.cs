@@ -20,6 +20,8 @@ public class KeyCollectables : MonoBehaviour
 
     // Private variable to keep track of how many keys the player has collected
     private static int keysCollected = 0;
+    private bool hasKeyBeenCollected = false;
+
 
 
     private void OnTriggerEnter(Collider other) {
@@ -32,60 +34,57 @@ public class KeyCollectables : MonoBehaviour
 
 
     // This function is called when the player object collides with the key object
-    private void OnTriggerStay(Collider other)
-    {
+    private void OnTriggerStay(Collider other){
 
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // Check if the colliding object is the player object
-            if (other.gameObject.tag == "Player")
+        // Check if the colliding object is the player object
+        if (other.gameObject.tag == "Player")
             {
-
-                collectSound();
-                // Disable the key object
-               // gameObject.SetActive(false);
-
-                // Increment the number of keys collected
-                keysCollected++;
-                KeyPressed = true;
-
-
-                // Show the collected key on the canvas
-                KeyNotFound.gameObject.SetActive(false);
-                Key.gameObject.SetActive(true);
-
-
-                // Check if the player has collected all 3 keys
-                if (keysCollected == 3)
+                if (!hasKeyBeenCollected) // Check if the key has not been collected already
                 {
-                    // Display a debug log message
-                    Debug.Log("Player has collected all 3 keys!");
-                    FindObjectOfType<WinHandler>().HandleWin();
-                    keysCollected = 0;
+                    collectSound();
+
+                    // Increment the number of keys collected
+                    keysCollected++;
+
+                    // Show the collected key on the canvas
+                    KeyNotFound.gameObject.SetActive(false);
+                    Key.gameObject.SetActive(true);
+
+                    hasKeyBeenCollected = true; // Set the flag to true to mark the key as collected
+
+                    // Check if the player has collected all 3 keys
+                    if (keysCollected == 3)
+                    {
+                        // Display a debug log message
+                        Debug.Log("Player has collected all 3 keys!");
+                        FindObjectOfType<WinHandler>().HandleWin();
+                        keysCollected = 0;
+                    }
                 }
-
-                 
-
             }
         }
+
        
     }
 
-     private void OnTriggerExit(Collider other) {
-        
-                if(other.gameObject.tag == "Player"){
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Key_text.enabled = false;
 
-                    Key_text.enabled = false;
+            if (hasKeyBeenCollected)
+            {
+                Destroy(gameObject);
+            }
 
-                    if(KeyPressed){
-                        Destroy(gameObject);
-                    }
-                   
-                
-
-                }
+            hasKeyBeenCollected = false; // Reset the flag when the player leaves the trigger area
+        }
     }
+
 
     void collectSound(){
         Debug.Log("KEY");
