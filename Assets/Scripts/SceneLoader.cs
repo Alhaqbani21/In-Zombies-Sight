@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
         // Set player to alive again, after reloading the scene
         // playerAlive = player.GetComponent<PlayerHealth>().playerIsDead;
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
 
