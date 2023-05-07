@@ -7,7 +7,12 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float hitPoints = 100f;
+     float Money = 500f;
+
     [SerializeField] TextMeshProUGUI healthText; 
+
+    [SerializeField] TextMeshProUGUI MoneyText; 
+
 
     public bool playerIsDead= false;
 
@@ -16,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
     {
         playerIsDead= false;
         UpdateHealthText();
+        UpdateMoneyText();
+
     }
 
     public void TakeDamage(float damage)
@@ -33,5 +40,21 @@ public class PlayerHealth : MonoBehaviour
     void UpdateHealthText()
     {
         healthText.text =   hitPoints.ToString(); // Update the text with the current health amount
+    }
+
+
+
+   public void AddMoney(float addMoney)
+    {
+        Money += addMoney;
+        UpdateMoneyText(); // Update the Money text 
+    }
+
+
+
+
+        void UpdateMoneyText()
+    {
+        MoneyText.text =  Money.ToString(); // Update the text with the current Money amount
     }
 }

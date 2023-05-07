@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
+using TMPro;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject player;
     bool playerDead;
 
+    bool MoneyCollected = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +52,7 @@ public class EnemyAI : MonoBehaviour
             enabled = false;
             navMeshAgent.enabled = false;
             soundActive= false;
-
+        
 
         }
 

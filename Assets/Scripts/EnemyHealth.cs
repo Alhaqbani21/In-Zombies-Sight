@@ -8,6 +8,15 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float hitPoints = 100f;
     bool isDead = false;
 
+    PlayerHealth target; // will be used for player money
+
+     void Start() 
+     {
+        
+    target = FindObjectOfType<PlayerHealth>();
+
+     }
+
     public bool IsDead()
     {
         return isDead;
@@ -16,12 +25,19 @@ public class EnemyHealth : MonoBehaviour
     {
         BroadcastMessage("OnDamageTaken");
         hitPoints -= damage;
+
+        if(!isDead)
+        {
+        target.AddMoney(75); // add money to the player on every hit
+        }
+
         if (hitPoints <= 0)
         {
             Die();
             //Destroy(gameObject);
 
         }
+   
 
     }
     private void Die()
