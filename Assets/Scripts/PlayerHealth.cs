@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float hitPoints = 100f;
-     float Money = 500f;
+     float Money = 11100f;
 
     [SerializeField] TextMeshProUGUI healthText; 
 
@@ -37,6 +37,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void AddHealthPerk()
+    {
+        hitPoints = 200;
+        UpdateHealthText(); // Update the health text after buying perk
+        
+    }
+
     void UpdateHealthText()
     {
         healthText.text =   hitPoints.ToString(); // Update the text with the current health amount
@@ -51,7 +58,22 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
+    public void ReduceMoney(float reduceMoney)
+    {
+        if(Money >= reduceMoney){
+        Money -= reduceMoney;
+        UpdateMoneyText(); // Update the Money text 
+        }
+     }
 
+    public bool checkMoney(float cost)
+    {
+        if(Money >= cost){
+        return true; 
+        }
+        else
+            return false;
+     }
 
         void UpdateMoneyText()
     {
