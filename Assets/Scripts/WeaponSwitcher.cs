@@ -7,12 +7,17 @@ public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] int currentWeapon = 0;
 
+    int numberOfWeapons;
+    int numberOfBuyable;
 
 
 
     void Start()
     {
         SetWeaponActive();
+        numberOfBuyable = 2;
+        numberOfWeapons = (transform.childCount - 1) - numberOfBuyable;
+        
     }
 
 
@@ -33,7 +38,7 @@ public class WeaponSwitcher : MonoBehaviour
     {
         if(Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            if(currentWeapon>=transform.childCount - 1 )
+            if(currentWeapon>= numberOfWeapons )  //numberOfWeapons = transform.childCount - 1;
             {
                 currentWeapon = 0;
             }
@@ -46,7 +51,7 @@ public class WeaponSwitcher : MonoBehaviour
         {
             if (currentWeapon <= 0)
             {
-                currentWeapon = transform.childCount-1;
+                currentWeapon = numberOfWeapons; //numberOfWeapons = transform.childCount - 1;
             }
             else
             {
@@ -93,5 +98,10 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
 
+
+    public void AddWeaponAfterBuying(){
+        numberOfBuyable--;
+        numberOfWeapons++;
+    }
     
 }
