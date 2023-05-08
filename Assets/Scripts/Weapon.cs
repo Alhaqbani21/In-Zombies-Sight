@@ -37,7 +37,14 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         DisplayAmmo();
-        if (Input.GetMouseButtonDown(0) && canShoot ==true)
+
+        if(this.gameObject.tag == "FullAuto")
+        {
+            if (Input.GetMouseButton(0) && canShoot ==true)
+            {
+                StartCoroutine(Shoot());
+            }
+        }else if (Input.GetMouseButtonDown(0) && canShoot ==true)
         {
             StartCoroutine(Shoot());
             

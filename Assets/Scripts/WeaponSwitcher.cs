@@ -33,7 +33,7 @@ public class WeaponSwitcher : MonoBehaviour
     {
         if(Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            if(currentWeapon>=transform.childCount - 1)
+            if(currentWeapon>=transform.childCount - 1 )
             {
                 currentWeapon = 0;
             }
@@ -78,9 +78,12 @@ public class WeaponSwitcher : MonoBehaviour
         
         foreach(Transform weapon in transform)
         {
-            if (weaponIndex == currentWeapon)
+     
+             if (weaponIndex == currentWeapon )
             {
+                
                 weapon.gameObject.SetActive(true);
+                
             }
             else
             {
