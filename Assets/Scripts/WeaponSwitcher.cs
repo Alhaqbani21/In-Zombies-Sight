@@ -15,7 +15,7 @@ public class WeaponSwitcher : MonoBehaviour
     void Start()
     {
         SetWeaponActive();
-        numberOfBuyable = 2;
+        numberOfBuyable = 0;
         numberOfWeapons = (transform.childCount - 1) - numberOfBuyable;
         
     }

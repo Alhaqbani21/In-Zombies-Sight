@@ -6,6 +6,7 @@ using TMPro;
 public class BuyWeapon : MonoBehaviour
 {
     PlayerHealth target; // will be used for player money
+    Weapons_children weaponsAllChildren;
     WeaponSwitcher switcher;
     [SerializeField] TMP_Text User_text;
     [SerializeField] TMP_Text NoMoney;
@@ -15,7 +16,8 @@ public class BuyWeapon : MonoBehaviour
     private AudioSource soundSource;
     bool bought;
 
-
+    
+    int numberofbought;
 
 
     // Start is called before the first frame update
@@ -23,10 +25,12 @@ public class BuyWeapon : MonoBehaviour
     {
         target = FindObjectOfType<PlayerHealth>();
         switcher = FindObjectOfType<WeaponSwitcher>();
+        weaponsAllChildren = FindObjectOfType<Weapons_children>();
         User_text.enabled = false;
         NoMoney.enabled = false;
         bought = false;
         soundSource= GetComponent<AudioSource>();
+         numberofbought = 0;
 
     }
 
@@ -81,13 +85,26 @@ public class BuyWeapon : MonoBehaviour
             User_text.enabled = false;
             NoMoney.enabled = false;
 
-
         }
     }
 
     void addWeapon()
     {
         switcher.AddWeaponAfterBuying();
+
+        if(this.gameObject.name == "M1A1ToBuy")
+        {
+            Debug.Log("in buy");
+            weaponsAllChildren.switchWeaponIndex(4 + numberofbought,3);
+            numberofbought++;
+        }
+        else  if(this.gameObject.name == "MP7ToBuy")
+        {
+            Debug.Log("in buy");
+            weaponsAllChildren.switchWeaponIndex(3 + numberofbought,3);
+            numberofbought++;
+        }
+
         
     }
 
