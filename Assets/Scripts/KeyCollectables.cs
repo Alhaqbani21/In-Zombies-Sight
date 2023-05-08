@@ -57,7 +57,7 @@ public class KeyCollectables : MonoBehaviour
                     {
                         // Display a debug log message
                         Debug.Log("Player has collected all 3 keys!");
-                        FindObjectOfType<WinHandler>().HandleWin();
+                        //FindObjectOfType<WinHandler>().HandleWin();
                         //keysCollected = 0;
                     }
                 }
