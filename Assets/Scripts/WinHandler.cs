@@ -16,6 +16,7 @@ public class WinHandler : MonoBehaviour
     // Update is called once per frame
     public void HandleWin()
     {
+        
         WinCanvas.enabled = true;
         Time.timeScale = 0;
         FindObjectOfType<WeaponSwitcher>().enabled = false;

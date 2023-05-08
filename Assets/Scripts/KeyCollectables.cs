@@ -5,42 +5,39 @@ using TMPro;
 
 public class KeyCollectables : MonoBehaviour
 {
-    
-
-
-
 
     // Public variable to hold references to the key images on the canvas
     [SerializeField] RawImage Key;
     [SerializeField] Image KeyNotFound;
     private AudioSource soundSource;
     bool KeyPressed = false;
-
     [SerializeField] TMP_Text Key_text;
 
     // Private variable to keep track of how many keys the player has collected
-    private static int keysCollected = 0;
+    public static int keysCollected = 0;
     private bool hasKeyBeenCollected = false;
 
 
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
 
-             if (other.gameObject.tag == "Player")
-            {
-                Key_text.enabled = true;
-            }
+        if (other.gameObject.tag == "Player")
+        {
+            Key_text.enabled = true;
+        }
     }
 
 
     // This function is called when the player object collides with the key object
-    private void OnTriggerStay(Collider other){
+    private void OnTriggerStay(Collider other)
+    {
 
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-        // Check if the colliding object is the player object
-        if (other.gameObject.tag == "Player")
+            // Check if the colliding object is the player object
+            if (other.gameObject.tag == "Player")
             {
                 if (!hasKeyBeenCollected) // Check if the key has not been collected already
                 {
@@ -61,13 +58,13 @@ public class KeyCollectables : MonoBehaviour
                         // Display a debug log message
                         Debug.Log("Player has collected all 3 keys!");
                         FindObjectOfType<WinHandler>().HandleWin();
-                        keysCollected = 0;
+                        //keysCollected = 0;
                     }
                 }
             }
         }
 
-       
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -86,7 +83,8 @@ public class KeyCollectables : MonoBehaviour
     }
 
 
-    void collectSound(){
+    void collectSound()
+    {
         Debug.Log("KEY");
         soundSource.Play();
     }
@@ -95,17 +93,17 @@ public class KeyCollectables : MonoBehaviour
     {
         Key.gameObject.SetActive(false);
         KeyNotFound.gameObject.SetActive(true);
-        soundSource= GetComponent<AudioSource>();
+        soundSource = GetComponent<AudioSource>();
         Key_text.enabled = false;
 
 
     }
 
-     
+
 
     // This function is called every frame
     private void Update()
     {
-        
+
     }
 }
