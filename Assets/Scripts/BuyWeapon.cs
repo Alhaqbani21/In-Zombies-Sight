@@ -16,7 +16,8 @@ public class BuyWeapon : MonoBehaviour
     private AudioSource soundSource;
     bool bought;
 
-
+    
+    int numberofbought;
 
 
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class BuyWeapon : MonoBehaviour
         NoMoney.enabled = false;
         bought = false;
         soundSource= GetComponent<AudioSource>();
+         numberofbought = 0;
 
     }
 
@@ -93,12 +95,14 @@ public class BuyWeapon : MonoBehaviour
         if(this.gameObject.name == "M1A1ToBuy")
         {
             Debug.Log("in buy");
-            weaponsAllChildren.switchWeaponIndex(4,3);
+            weaponsAllChildren.switchWeaponIndex(4 + numberofbought,3);
+            numberofbought++;
         }
         else  if(this.gameObject.name == "MP7ToBuy")
         {
             Debug.Log("in buy");
-            weaponsAllChildren.switchWeaponIndex(3,3);
+            weaponsAllChildren.switchWeaponIndex(3 + numberofbought,3);
+            numberofbought++;
         }
 
         
