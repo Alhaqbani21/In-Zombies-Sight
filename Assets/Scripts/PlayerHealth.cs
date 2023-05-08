@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+
+   private AudioSource soundSource;
+   public AudioClip[] hitSounds;
+   int n=0;
+
+
     [SerializeField] float hitPoints = 100f;
      float Money = 11100f;
 
@@ -22,6 +28,8 @@ public class PlayerHealth : MonoBehaviour
         playerIsDead= false;
         UpdateHealthText();
         UpdateMoneyText();
+        soundSource= GetComponent<AudioSource>();
+
 
     }
 
@@ -29,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
     {
         hitPoints -= damage;
         UpdateHealthText(); // Update the health text after taking damage
+        StartHitSound();
         
         if (hitPoints <= 0)
         {
@@ -47,6 +56,18 @@ public class PlayerHealth : MonoBehaviour
     void UpdateHealthText()
     {
         healthText.text =   hitPoints.ToString(); // Update the text with the current health amount
+    }
+
+     void StartHitSound(){
+        n= UnityEngine.Random.Range(1, hitSounds.Length);
+        soundSource.clip= hitSounds[n];
+        soundSource.Play();
+        Debug.Log("BEING HIT");
+
+            // to avoid repeating the sound
+          hitSounds[n]= hitSounds[0];
+         hitSounds[0]= soundSource.clip;
+
     }
 
 

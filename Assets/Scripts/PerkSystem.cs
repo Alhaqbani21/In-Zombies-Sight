@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class PerkSystem : MonoBehaviour
 {
 
+
+
     PlayerHealth target; // will be used for player money
     UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController Mytarget;
     [SerializeField] TMP_Text User_text;
@@ -14,9 +16,10 @@ public class PerkSystem : MonoBehaviour
     [SerializeField] Image perkImage;
     [SerializeField] private float movementSpeed;
 
-
     [SerializeField] float Cost;
 
+
+    private AudioSource soundSource;
     bool bought;
 
 
@@ -33,6 +36,8 @@ public class PerkSystem : MonoBehaviour
         NoMoney.enabled = false;
         bought = false;
         perkImage.enabled = false;
+        soundSource= GetComponent<AudioSource>();
+
     }
 
  
@@ -56,7 +61,8 @@ public class PerkSystem : MonoBehaviour
             {
                 if(target.checkMoney(Cost))// check if we have enough money
                 {
-                    // add sound here
+                    
+                    soundSource.Play();
                     target.ReduceMoney(Cost); // subtract money
                     User_text.enabled = false;
 
