@@ -102,16 +102,20 @@ public class EnemyAI : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("attack", false);
         GetComponent<Animator>().SetTrigger("move");
-        navMeshAgent.SetDestination(target.position);
-
-       
-        if(gameObject.activeSelf && !soundSource.isPlaying && !playerDead){
-            soundActive= true;
-        startSoundChase();
+        if (navMeshAgent.isActiveAndEnabled) // add a check for active and enabled NavMeshAgent
+        {
+            if (NavMesh.SamplePosition(target.position, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+            {
+                navMeshAgent.SetDestination(hit.position);
+            }
         }
-
-
+        if (gameObject.activeSelf && !soundSource.isPlaying && !playerDead)
+        {
+            soundActive = true;
+            startSoundChase();
+        }
     }
+
 
     private void AttackTarget()
     {
