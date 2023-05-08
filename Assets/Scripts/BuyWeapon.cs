@@ -12,6 +12,8 @@ public class BuyWeapon : MonoBehaviour
     [SerializeField] TMP_Text NoMoney;
     [SerializeField] float Cost;
 
+    int total_gun_parts;
+
 
     private AudioSource soundSource;
     bool bought;
@@ -30,7 +32,8 @@ public class BuyWeapon : MonoBehaviour
         NoMoney.enabled = false;
         bought = false;
         soundSource= GetComponent<AudioSource>();
-         numberofbought = 0;
+        numberofbought = 0;
+        total_gun_parts = 0;
 
     }
 
@@ -90,22 +93,35 @@ public class BuyWeapon : MonoBehaviour
 
     void addWeapon()
     {
-        switcher.AddWeaponAfterBuying();
 
         if(this.gameObject.name == "M1A1ToBuy")
         {
+            switcher.AddWeaponAfterBuying();
             Debug.Log("in buy");
             weaponsAllChildren.switchWeaponIndex(4 + numberofbought,3);
             numberofbought++;
         }
         else  if(this.gameObject.name == "MP7ToBuy")
         {
+            switcher.AddWeaponAfterBuying();
             Debug.Log("in buy");
             weaponsAllChildren.switchWeaponIndex(3 + numberofbought,3);
+            //numberofbought++;
+        }
+        else  if(this.gameObject.name == "MapGunBuild" && (total_gun_parts >= 3))
+        {
+            switcher.AddWeaponAfterBuying();
+            Debug.Log("Build GUN");
+            weaponsAllChildren.switchWeaponIndex(5 ,3);
             numberofbought++;
         }
 
         
+    }
+
+    public void addWeaponPart()
+    {
+        total_gun_parts++;
     }
 
 }
