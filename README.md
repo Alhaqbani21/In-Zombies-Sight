@@ -17,11 +17,22 @@ Zombie Game was developed by [Alhaqbani21, ShabibCodes, Imad-Alqattan, SeniorSam
 Here are some screenshots of the Game in action:
 
 ![Zombie Game screenshot 1](/Screenshots/screenshot1.png)
+
 ![Zombie Game screenshot 2](/Screenshots/screenshot2.png)
+
 ![Zombie Game screenshot 3](/Screenshots/screenshot3.png)
+
 ![Zombie Game screenshot 4](/Screenshots/screenshot4.png)
+
 ![Zombie Game screenshot 5](/Screenshots/screenshot5.png)
+
 ![Zombie Game screenshot 6](/Screenshots/screenshot6.png)
 
+
+## Gameplay
+
+Here is a gameplay of the Game in action:
+
+[![In-Zombies-Sight gameplay video](https://img.youtube.com/vi/UG02rXo8l58/0.jpg)](https://www.youtube.com/watch?v=UG02rXo8l58)
 
 
