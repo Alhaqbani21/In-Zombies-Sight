@@ -33,6 +33,6 @@ Here are some screenshots of the Game in action:
 
 Here is a gameplay of the Game in action:
 
-[![In-Zombies-Sight gameplay video](https://img.youtube.com/vi/UG02rXo8l58/0.jpg)](https://www.youtube.com/watch?v=UG02rXo8l58)
+[![In-Zombies-Sight gameplay video](/Screenshots/screenshot7.png)](https://www.youtube.com/watch?v=UG02rXo8l58)
 
 
