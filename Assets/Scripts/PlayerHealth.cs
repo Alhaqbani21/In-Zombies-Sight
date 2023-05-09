@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
 
 
     [SerializeField] float hitPoints = 100f;
-    [SerializeField]float Money = 11100f;
+    [SerializeField]float Money = 1500f;
 
     [SerializeField] TextMeshProUGUI healthText; 
 
