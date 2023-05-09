@@ -16,7 +16,12 @@ Zombie Game was developed by [Alhaqbani21, ShabibCodes, Imad-Alqattan, SeniorSam
 
 Here are some screenshots of Zombie Game in action:
 
-
+![Zombie Game screenshot 1](/)
+![Zombie Game screenshot 2](/)
+![Zombie Game screenshot 3](/)
+![Zombie Game screenshot 4](/)
+![Zombie Game screenshot 5](/)
+![Zombie Game screenshot 6](/)
 
 
 
