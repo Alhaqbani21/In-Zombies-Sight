@@ -11,11 +11,24 @@ public class KeyCollectables : MonoBehaviour
     [SerializeField] Image KeyNotFound;
     private AudioSource soundSource;
     bool KeyPressed = false;
+    private SphereCollider col;
     [SerializeField] TMP_Text Key_text;
 
     // Private variable to keep track of how many keys the player has collected
     public static int keysCollected = 0;
     private bool hasKeyBeenCollected = false;
+
+
+   private void Start()
+    {
+        Key.gameObject.SetActive(false);
+        KeyNotFound.gameObject.SetActive(true);
+        soundSource = GetComponent<AudioSource>();
+        col= GetComponent<SphereCollider>();
+        Key_text.enabled = false;
+
+
+    }
 
 
 
@@ -37,11 +50,10 @@ public class KeyCollectables : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Check if the colliding object is the player object
-            if (other.gameObject.tag == "Player")
+             // Check if the key has not been collected already
+            if (other.gameObject.tag == "Player" && !hasKeyBeenCollected)
             {
-                if (!hasKeyBeenCollected) // Check if the key has not been collected already
-                {
-                    collectSound();
+                     collectSound();
 
                     // Increment the number of keys collected
                     keysCollected++;
@@ -49,8 +61,8 @@ public class KeyCollectables : MonoBehaviour
                     // Show the collected key on the canvas
                     KeyNotFound.gameObject.SetActive(false);
                     Key.gameObject.SetActive(true);
-
                     hasKeyBeenCollected = true; // Set the flag to true to mark the key as collected
+
 
                     // Check if the player has collected all 3 keys
                     if (keysCollected == 3)
@@ -60,12 +72,16 @@ public class KeyCollectables : MonoBehaviour
                         //FindObjectOfType<WinHandler>().HandleWin();
                         //keysCollected = 0;
                     }
-                }
+
+                    this.GetComponent<MeshRenderer>().enabled= false;
+                    Key_text.enabled = false;
             }
         }
 
 
     }
+
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -77,9 +93,9 @@ public class KeyCollectables : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-
             hasKeyBeenCollected = false; // Reset the flag when the player leaves the trigger area
         }
+
     }
 
 
@@ -89,15 +105,7 @@ public class KeyCollectables : MonoBehaviour
         soundSource.Play();
     }
 
-    private void Start()
-    {
-        Key.gameObject.SetActive(false);
-        KeyNotFound.gameObject.SetActive(true);
-        soundSource = GetComponent<AudioSource>();
-        Key_text.enabled = false;
-
-
-    }
+ 
 
 
 
